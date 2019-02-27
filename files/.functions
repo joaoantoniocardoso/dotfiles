@@ -1,0 +1,108 @@
+#!/usr/bin/env zsh
+
+function cp-progress(){
+    
+    if [ -n $2 ]; then
+        local source-file=$1
+        local destination=$2
+
+        rsync -ah --progress source-file destination
+        
+    fi
+
+}
+
+function search(){
+
+    if [ -n $1 ]; then
+
+        local word=$1
+        local mydir="."
+
+        if [ -n $2 ]; then
+            local mydir=$2
+        fi
+
+        echo "Searching for files that contains \"$word\" at \"$mydir\" dir."
+
+        grep -inr $word $mydir
+    else
+        echo "Enter one or two arguments: first the search, then the dir(opt)"
+
+    fi
+}
+
+# Create a new directory and enter it
+function mkd() {
+	mkdir -p "$@" && cd "$_";
+}
+
+# Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
+function targz() {
+	local tmpFile="${@%/}.tar";
+	tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
+
+	size=$(
+		stat -f"%z" "${tmpFile}" 2> /dev/null; # macOS `stat`
+		stat -c"%s" "${tmpFile}" 2> /dev/null;  # GNU `stat`
+	);
+
+	local cmd="";
+	if (( size < 52428800 )) && hash zopfli 2> /dev/null; then
+		# the .tar file is smaller than 50 MB and Zopfli is available; use it
+		cmd="zopfli";
+	else
+		if hash pigz 2> /dev/null; then
+			cmd="pigz";
+		else
+			cmd="gzip";
+		fi;
+	fi;
+
+	echo "Compressing .tar ($((size / 1000)) kB) using \`${cmd}\`…";
+	"${cmd}" -v "${tmpFile}" || return 1;
+	[ -f "${tmpFile}" ] && rm "${tmpFile}";
+
+	zippedSize=$(
+		stat -f"%z" "${tmpFile}.gz" 2> /dev/null; # macOS `stat`
+		stat -c"%s" "${tmpFile}.gz" 2> /dev/null; # GNU `stat`
+	);
+
+	echo "${tmpFile}.gz ($((zippedSize / 1000)) kB) created successfully.";
+}
+
+# Determine size of a file or total size of a directory
+function fs() {
+	if du -b /dev/null > /dev/null 2>&1; then
+		local arg=-sbh;
+	else
+		local arg=-sh;
+	fi
+	if [[ -n "$@" ]]; then
+		du $arg -- "$@";
+	else
+		du $arg .[^.]* ./*;
+	fi;
+}
+
+# `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring
+# the `.git` directory, listing directories first. The output gets piped into
+# `less` with options to preserve color and line numbers, unless the output is
+# small enough for one screen.
+function tre() {
+	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
+}
+
+function macspoof(){
+     if [ -n $1 ]; then
+
+        local interface=wlp2s0
+
+        ip link set dev $interface down;
+        ip link set $interface address $1
+        ip link set $interface up
+
+    else
+        echo "enter a new mac address as XX:XX:XX:XX:XX:XX"
+    fi 
+}
