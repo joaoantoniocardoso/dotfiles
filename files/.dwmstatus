@@ -1,0 +1,12 @@
+# Set widgets
+SOUND=`amixer get Master | egrep -m 1 -o "[0-9]+%"`
+LOAD=`uptime|grep -o '[0-9]\+\.[0-9][0-9]'|awk  -vRS= -vFS="\n" '{print  $1"|"$2"|"$3}'`
+ACPI=`acpi|grep -o '[0-9]\+%'`
+RAM_USAGE=`free | grep Mem | awk '{printf("%.2f%", $3/$2 * 100.0)}'`             
+DATE=`date "+%H:%M %d/%m"`
+POWER_USAGE=`awk '{print $1*10^-6 "W"}' /sys/class/power_supply/BAT1/power_now`
+MPD=`mpc status|grep -o '.* - .*'|awk 'match($0, /(.{,100}).*/, ary) {print ary[1]}'`
+
+# display
+xsetroot -name "S:${SOUND} L:${LOAD} M:${RAM_USAGE} P:${POWER_USAGE} B:${ACPI} ${DATE}"
+
