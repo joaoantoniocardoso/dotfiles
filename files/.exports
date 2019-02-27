@@ -1,0 +1,72 @@
+#!/usr/bin/env zsh
+
+# Installs extensions as current user 
+export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
+
+# Libopencm3
+export OPENCM3_DIR=include/libopencm3/
+
+# VTK (used by engrid)
+export VTKINCDIR=/usr/include/vtk
+export VTKLIBDIR=/usr/lib
+
+# Openmpi
+export LD_LIBRARY_PATH=/usr/lib/openmpi
+
+# Salome and modules
+#export KERNEL_ROOT_DIR=/home/joaoantoniocardoso/salome/Salome-V8_2_0-univ/modules/KERNEL_V8_2_0
+#export ADAO_ROOT_DIR=/home/joaoantoniocardoso/salome/Salome-V8_2_0-univ/modules/ADAO_V8_2_0
+#export BLSURFPLUGIN_ROOT_DIR=/home/joaoantoniocardoso/salome/Salome-V8_2_0-univ/modules/BLSURFPLUGIN_V8_2_0
+#export DSCCODE_ROOT_DIR=/home/joaoantoniocardoso/salome/Salome-V8_2_0-univ/modules/DSCCODE_V8_2_0
+#export EFICAS_ROOT_DIR=/home/joaoantoniocardoso/salome/Salome-V8_2_0-univ/modules/EFICAS_V8_2_0
+#export GEOM_ROOT_DIR=/home/joaoantoniocardoso/salome/Salome-V8_2_0-univ/modules/GEOM_V8_2_0
+#export GHS3DPLUGIN_ROOT_DIR=/home/joaoantoniocardoso/salome/Salome-V8_2_0-univ/modules/GHS3DPLUGIN_V8_2_0
+#export GHS3DPRLPLUGIN_ROOT_DIR=/home/joaoantoniocardoso/salome/Salome-V8_2_0-univ/modules/GHS3DPRLPLUGIN_V8_2_0
+#export GUI_ROOT_DIR=/home/joaoantoniocardoso/salome/Salome-V8_2_0-univ/modules/GUI_V8_2_0
+#export HEXABLOCKPLUGIN_ROOT_DIR=/home/joaoantoniocardoso/salome/Salome-V8_2_0-univ/modules/
+#export _ROOT_DIR=/home/joaoantoniocardoso/salome/Salome-V8_2_0-univ/modules/
+
+# Path to your oh-my-zsh installation.
+export ZSH=/home/joaoantoniocardoso/.oh-my-zsh
+
+# Android SDK
+export ANDROID_HOME=/opt/android-sdk
+
+# Set visual editor as vim
+export VISUAL="vim"
+
+# Set Qt version
+export QT_SELECT='5';
+
+# Adwaita theme for qt
+export QT_STYLE_OVERRIDE=adwaita
+
+# Compilation flags
+export ARCHFLAGS="-arch x86_64" 
+
+# Make vim the default editor.
+export EDITOR='vim';
+export VISUAL='vim';
+
+# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
+export PYTHONIOENCODING='UTF-8';
+
+# Prefer US English and use UTF-8.
+export LANG='en_US.UTF-8';
+export LC_ALL='en_US.UTF-8';
+
+# Highlight section titles in manual pages.
+export LESS_TERMCAP_md="${yellow}";
+
+# Don’t clear the screen after quitting a manual page.
+export MANPAGER='less -X';
+
+# MPD
+export MPD_HOST=/home/joaoantoniocardoso/.config/mpd/socket
+
+# perl
+PERL5LIB="/home/joaoantoniocardoso/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/joaoantoniocardoso/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/joaoantoniocardoso/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/joaoantoniocardoso/perl5"; export PERL_MM_OPT;
+
