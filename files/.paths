@@ -1,0 +1,44 @@
+#!/usr/bin/env zsh
+
+# Esp32
+# https://docs.espressif.com/projects/esp-idf/en/latest/get-started/add-idf_path-to-profile.html
+export IDF_PATH=~/esp/esp-idf
+
+# Scilab
+export PATH="$PATH:/opt/scilab/bin";
+
+# Custom scripts
+export PATH="$PATH:/home/joaoantoniocardoso/scripts";
+export PATH="$PATH:/home/joaoantoniocardoso/dotfiles/manager";
+
+# Oh-My-Vim
+export PATH="$PATH:/home/joaoantoniocardoso/.oh-my-vim/bin";
+
+# Matlab
+#export PATH="$PATH:/usr/local/MATLAB/MATLAB_Production_Server/R2015a/bin";
+#just using custom script to startup: ~/scripts/matlab
+
+# Exploit Database
+export PATH="$PATH:/opt/exploit-database";
+
+# RVM
+export PATH="$PATH:$HOME/.rvm/bin"; # Add RVM to PATH for scripting
+
+#export MANPATH="/usr/local/man:$MANPATH";
+
+# perl
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib/perl5/5.28/core_perl/CORE"
+export PATH="/home/joaoantoniocardoso/perl5/bin${PATH:+:${PATH}}";
+export PATH="/usr/lib/perl5/bin${PATH:+:${PATH}}"
+
+# Salome
+export PATH="$PATH:/home/joaoantoniocardoso/salome/appli_V8_2_0";
+
+#export PATH="/usr/local/sbin${PATH:+:${PATH}}";
+
+# Ruby
+export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin";
+
+# simFlow
+export PATH=$PATH:/home/joaoantoniocardoso/simFlow/simFlow-3.1; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - 8F1FFBF3-4166-531F-536F-118E03C20EE    2 9802E400-BCF6-C1DD-E975-2B0816BF87E9
+
