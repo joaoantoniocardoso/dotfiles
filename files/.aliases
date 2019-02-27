@@ -1,0 +1,97 @@
+#!/usr/bin/env zsh
+# For a full list of active aliases, run `alias`.
+
+# Edit Firefox
+alias firefox_config="vim ~/.mozilla/firefox/xjj42d8b.default/chrome/userChrome.css"
+
+# OPEN FOAM 54.x
+alias OF5x="source /home/joaoantoniocardoso/OpenFOAM/OpenFOAM-5.x/etc/bashrc"
+
+# OPEN FOAM 4.x
+#alias OF4x="source /home/joaoantoniocardoso/OpenFOAM/OpenFOAM-4.x/etc/bashrc"
+# Extended OPEN FOAM 4.x
+#alias eOF4x="source $HOME/foam/foam-extend-4.0/etc/zshrc"
+
+# ESP toolchain
+# https://docs.espressif.com/projects/esp-idf/en/latest/get-started/linux-setup.html
+alias get_esp32='export PATH="$HOME/esp/xtensa-esp32-elf/bin:$PATH"'
+
+# Cmatrix
+alias cmatrix="cmatrix -u1 -foabCblue"
+
+# Last Dmesg's
+alias dmesg-="dmesg | tail"
+
+# Yaourt command to update aur packages
+alias yaourt-="yaourt --aur --noconfirm"
+
+#alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# List the current directory masked by the argument
+alias lsgrep="ls * | grep"
+
+# Scilab in batch mode (without java features), fast run:
+alias scilab-="scilab -nwni -nb"
+
+# List executables
+alias lsx="find . -maxdepth 1 -type f -executable"
+
+# Fuser
+alias fuser="fuser -aiuv"
+
+# Google chrome
+alias chrome="google-chrome-stable"
+alias google-chrome="google-chrome-stable"
+
+# Extract .tar.gz:
+alias untargz="tar -zxvf"
+
+# Fast jump to semester folder:
+alias jmp="cd $HOME/Dropbox/IFSC/Documentos/2018-2 && cd"
+
+# Workarround to make sudo use this aliases:
+alias sudo="sudo "
+
+# Print each PATH entry on a separate line:
+alias path='echo -e ${PATH//:/\\n}'
+
+# Aliases to dnsfix:
+alias dnsfix_google="sudo chattr -i /etc/resolv.conf && sudo cp /etc/resolv.conf_google /etc/resolv.conf && sudo chattr +i /etc/resolv.conf"
+alias dnsfix_ifsc="sudo chattr -i /etc/resolv.conf && sudo cp /etc/resolv.conf_ifsc /etc/resolv.conf && sudo chattr +i /etc/resolv.conf"
+alias dnsfix_cloudflare="sudo chattr -i /etc/resolv.conf && sudo cp /etc/resolv.conf_cloudflare /etc/resolv.conf && sudo chattr +i /etc/resolv.conf"
+
+# List detailed ordered by Time
+alias lst="ls -ltr"
+
+# To start MPD:
+alias start_mpd= "mpc update && mpd && ncmpcpp"
+
+# Makes grep colored:
+alias grep="grep --color=auto"
+
+# Use git-hub instead of git:
+alias git="hub"
+
+# A timer to count the time:
+alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
+
+# Intuitive map function
+# # For example, to list all directories that contain a certain file:
+# # find . -name .gitattributes | map dirname
+alias map="xargs -n1"
+
+# IP addresses:
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias mylocalip="ifconfig getifaddr wlp2s0"
+alias mymac="macchanger -s wlp2s0"
+alias myips="ifconfig wlp2s0 | awk '{print $2}' | egrep -o '([0-9]+\.){3}[0-9]+'"
+
+# Protects from RM
+# replace rm command with mv to Trash to protect remove files or directory miss
+# from https://gist.github.com/hanks/48d4a5cbe5eb674ee914
+function __protect_rm {
+    mv ${@: -1} ~/.Trash   #get last function argument
+}
+alias rm="__protect_rm"
+alias trash="cd ~/.Trash"
