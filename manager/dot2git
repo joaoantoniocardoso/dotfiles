@@ -1,0 +1,79 @@
+#!/bin/env sh
+# This script helps to manage my dotfiles:
+# 1) moves the original file to git
+# 2) creates a symbolic link in original place to the original (now on this git)
+# 3) creates a file that contains the original target place
+# 4) uploads to git
+
+# Path of the dotfiles GIT
+GIT_DIR=~/dotfiles
+# Sub folder to keep dotfiles
+DOT_SUBDIR=files
+# Sub folder to keep original location of the dotfiles
+LOC_SUBDIR=locations
+
+# Path to keep the dotfiles
+DOT_DIR=$GIT_DIR/$DOT_SUBDIR
+# Path to keep the original location of the dotfiles
+LOC_DIR=$GIT_DIR/$LOC_SUBDIR
+
+echo Note: using "$DOT_DIR" as the path to keep the dotfiles
+echo Note: using "$LOC_DIR" as the path to keep the original  dotfiles location
+
+if [ $# -lt 1 ]; then
+    echo "One argument needed."
+    exit
+fi
+
+# Creates the dirs if it doesnt exist
+mkdir -p "$DOT_DIR"
+mkdir -p "$LOC_DIR"
+
+TARGET=$(readlink -f $1)
+TARGET_FILENAME=$(basename $TARGET)
+TARGET_DIR=$(dirname $TARGET)
+DOT_FILE=$DOT_DIR/$TARGET_FILENAME
+LOC_FILE=$LOC_DIR/$TARGET_FILENAME.location
+
+# Move and create the symbolic link
+echo Moving "$TARGET" to "$DOT_DIR"
+mv "$TARGET" "$DOT_DIR"
+echo ... OK
+echo Linking "$DOT_FILE" to "$TARGET_DIR"
+ln -sv "$DOT_FILE" "$TARGET_DIR"
+echo ... OK
+
+# Check
+echo Checking if "$TARGET" links to "$DOT_FILE"
+if [ "$TARGET" -ef "$DOT_FILE" ] 
+then
+    echo ... OK
+else
+    echo ... ERROR
+    exit -1 
+fi
+
+# Add a reference of its original location in a csv file
+echo "$TARGET" > "$LOC_FILE"
+
+# Check
+echo Checking if "$LOC_FILE" really contains "$TARGET"
+if [ "$(cat $LOC_FILE)" = "$TARGET" ]
+then
+    echo ... OK
+else
+    echo ... ERROR
+    exit -1 
+fi
+
+# Push to the GIT repository
+PWD=$(pwd)
+echo Updating git
+cd "$GIT_DIR"
+git add "$DOT_DIR/$TARGET_FILENAME" "$LOC_DIR/$TARGET_FILENAME.location"
+git commit -m "dotfile $TARGET added"
+git push origin master
+cd "$PWD"
+echo ... OK
+
+

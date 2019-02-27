@@ -1,0 +1,77 @@
+#!/bin/env sh
+# This script helps to manage my dotfiles:
+# 1) Get the original path from location file
+# 2) Recreates the original path if doesn't exist
+# 3) Check if the file in original path already exist
+# 4) Renames it with a sufix .old
+# 5) Creates a symbolic link at the original place
+# 
+
+# Path of the dotfiles GIT
+GIT_DIR=~/dotfiles
+# Sub folder to keep dotfiles
+DOT_SUBDIR=files
+# Sub folder to keep original location of the dotfiles
+LOC_SUBDIR=locations
+
+# Path to keep the dotfiles
+DOT_DIR=$GIT_DIR/$DOT_SUBDIR
+# Path to keep the original location of the dotfiles
+LOC_DIR=$GIT_DIR/$LOC_SUBDIR
+
+if [ $# -lt 1 ]; then
+    echo "One argument needed."
+    exit
+fi
+
+# Check the passed dotfile parameter
+if [ ! -f "$TARGET" ]
+then
+    echo Passed dotfile "$TARGET" doesn\'t exist!
+    exit -1
+fi 
+
+# Create the dirs if it doesnt exist
+mkdir -p "$DOT_DIR"
+mkdir -p "$LOC_DIR"
+
+TARGET=$(readlink -f $1)
+TARGET_FILENAME=$(basename $TARGET)
+TARGET_DIR=$(dirname $TARGET)
+DOT_FILE=$DOT_DIR/$TARGET_FILENAME
+LOC_FILE=$LOC_DIR/$TARGET_FILENAME.location
+ORIG_FILE=$(cat $LOC_FILE)
+ORIG_DIR=$(basename $ORIG_FILE)
+
+# Check the location file for the passed dotfile    
+if [ ! -f "$LOC_FILE"  ] 
+then
+    echo The location file \("$LOC_FILE"\) for the passed dotfile "$TARGET" doesn\'t exist.
+    exit -1
+fi
+
+# Create the original dir if it doesnt exist
+mkdir -p "$ORIG_DIR"
+
+# Renaming the old file
+if [ -e "$ORIG_FILE"  ]
+then
+    echo Renaming old "$ORIG_FILE" to "$ORIG_FILE.old"
+    mv "$ORIG_FILE" "$ORIG_FILE.old"
+fi
+
+# Create the symbolic link
+echo Linking "$DOT_FILE" to "$ORIG_DIR"
+ln -sv "$DOT_FILE" "$ORIG_DIR"
+echo ... OK
+
+# Check
+echo Checking if "$ORIG_FILE" links to "$DOT_FILE"
+if [ "$ORIG_FILE" -ef "$DOT_FILE" ] 
+then
+    echo ... OK
+else
+    echo ... ERROR
+    exit -1 
+fi
+
