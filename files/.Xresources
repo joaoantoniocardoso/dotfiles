@@ -1,0 +1,36 @@
+#include "/home/joaoantoniocardoso/.colors/base16-xresources/xresources/base16-atelier-plateau.Xresources"
+
+xterm*visualBell: false
+
+!!!!!!!! ST !!!!!!!
+
+! These are all possible options, presented with default values.
+! xst will fallback to *.option if st.option is not present.
+! see src/config.h for more information about option meanings.
+
+! These options only take effect on startup.
+st.termname:     st-256color
+! if you do not set shell, precedence is: -e arg, utmp option, SHELL env var, /etc/passwd shell
+st.shell:        /bin/zsh
+
+! The following options options can be reloaded via USR1 signal.
+! st.font:         Liberation Mono:pixelsize=12:antialias=true:autohint=true;
+st.font:         DejaVu Sans Mono for Powerline:pixelsize=11:antialias=true:autohint=true;
+st.borderpx:     0
+! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
+st.cursorshape:  2
+st.cursorthickness:  2
+st.cursorblinkstyle: 0
+st.cursorblinkontype: 1
+st.bold_font:    0
+st.xfps:         120
+st.actionfps:    30
+st.chscale:      1.0
+st.cwscale:      1.0
+st.blinktimeout: 0
+st.bellvolume:   0
+! this is a char that is exposed like so: `printf '\033[z'`
+st.prompt_char:  $
+
+! opacity==255 means what terminal will be not transparent, 0 - fully transparent
+*.opacity:      240
