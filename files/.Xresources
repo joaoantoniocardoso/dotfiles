@@ -1,14 +1,11 @@
-! #include "/home/joaoantoniocardoso/.colors/base16-xresources/xresources/base16-atelier-plateau.Xresources"
- 
-*XTerm*termname: xterm-256color
+!#include ".colors/base16-xresources/base16-atelier-plateau.Xresources"
+!*XTerm*termname: xterm-256color
 !*XTerm*faceName: DejaVu Sans Mono for Powerline:size=9:antialias=false:autohint=true;
 *XTerm*font: -*-terminus-medium-r-normal-*-12-*-*-*-*-*-iso10646-1
 *visualBell: false
 *bellIsUrgent: false
 *XTerm*utf8: 1
 *XTerm*fullscreen: never
-
-
 
 !!!!!!!! ST !!!!!!!
 
