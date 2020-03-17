@@ -79,3 +79,6 @@ BASE16_SHELL=$HOME/.colors/base16-shell/
 
 # added by travis gem
 [ -f /home/joaoantoniocardoso/.travis/travis.sh ] && source /home/joaoantoniocardoso/.travis/travis.sh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

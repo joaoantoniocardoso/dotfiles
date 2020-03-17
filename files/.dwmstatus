@@ -5,8 +5,9 @@ ACPI=`acpi|grep -o '[0-9]\+%'`
 RAM_USAGE=`free | grep Mem | awk '{printf("%.2f%", $3/$2 * 100.0)}'`             
 DATE=`date "+%H:%M %d/%m"`
 POWER_USAGE=`awk '{print $1*10^-6 "W"}' /sys/class/power_supply/BAT1/power_now`
+VOLTAGE=`awk '{print $1*10^-6 "V"}' /sys/class/power_supply/BAT1/voltage_now`
 MPD=`mpc status|grep -o '.* - .*'|awk 'match($0, /(.{,100}).*/, ary) {print ary[1]}'`
 
 # display
-xsetroot -name "S:${SOUND} L:${LOAD} M:${RAM_USAGE} P:${POWER_USAGE} B:${ACPI} ${DATE}"
+xsetroot -name "S:${SOUND} L:${LOAD} M:${RAM_USAGE} P:${POWER_USAGE} V:${VOLTAGE} B:${ACPI} ${DATE}"
 

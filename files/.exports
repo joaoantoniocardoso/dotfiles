@@ -1,5 +1,14 @@
 #!/usr/bin/env zsh
 
+# XDG_CONFIG_HOME
+export XDG_CONFIG_HOME=$HOME/.config
+
+# GOPATH
+export GOPATH=$HOME/go
+
+# DWM fixes
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # Installs extensions as current user 
 export JUPYTERLAB_DIR=$HOME/.local/share/jupyter/lab
 

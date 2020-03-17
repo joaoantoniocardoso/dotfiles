@@ -5,7 +5,6 @@ let &runtimepath=substitute(&runtimepath, '^', $OH_MY_VIM.",", 'g')
 " /USER CUSTOMIZATIONS
 set runtimepath^=./vim/ifdef/ifdef.vim
 
-
 " enable/disable bufferline integration
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#bufferline#overwrite_variables = 1
@@ -41,3 +40,4 @@ let g:foam256_use_custom_colors=1
 set t_Co=256
 set exrc
 set secure
+

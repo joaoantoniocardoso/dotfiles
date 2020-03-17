@@ -1,5 +1,23 @@
 #!/usr/bin/env zsh
 
+# GO PATH
+export PATH="$PATH:$HOME/go/bin"
+
+# XPM xPacks path
+export XPACKS_REPO_FOLDER=~/opt/
+
+# simFLow:
+export PAHT="$PATH:/home/joaoantoniocardoso/CFD/simFlow/simFlow-3.1";
+
+# Emscripten
+export PATH="$PATH:/usr/lib/emscripten";
+
+# Paraview
+export PATH="$PATH:/opt/paraview/bin";
+
+# Engys HELIX-OS
+export PATH="$PATH:/home/joaoantoniocardoso/CFD/Engys/HELYX-OS/v2.4.0/bin";
+
 # Esp32
 # https://docs.espressif.com/projects/esp-idf/en/latest/get-started/add-idf_path-to-profile.html
 export IDF_PATH=~/esp/esp-idf
@@ -37,8 +55,5 @@ export PATH="$PATH:/home/joaoantoniocardoso/salome/appli_V8_2_0";
 #export PATH="/usr/local/sbin${PATH:+:${PATH}}";
 
 # Ruby
-export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin";
-
-# simFlow
-export PATH=$PATH:/home/joaoantoniocardoso/simFlow/simFlow-3.1; # ADDED BY INSTALLER - DO NOT EDIT OR DELETE THIS COMMENT - 8F1FFBF3-4166-531F-536F-118E03C20EE    2 9802E400-BCF6-C1DD-E975-2B0816BF87E9
+#export PATH="$PATH:$(ruby -e 'print Gem.user_dir')/bin";
 

@@ -10,9 +10,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-# Set URxvt
-#[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
-
 # Makes GTK follow ~/.Xcompose file
 export GTK_IM_MODULE=xim
 
@@ -24,19 +21,16 @@ export GTK_IM_MODULE=xim
 hsetroot -solid #000000
 
 # XRANDR!
-#xrandr --output LVDS1 --off
-xrandr --output LVDS1 --preferred
-xrandr --output VGA1 --preferred --right-of LVDS1
-xrandr --output DP1 --preferred
-xrandr --output HDMI1 --preferred
-
-# Set compton
-#compton -Cb &
+#xrandr --output LVDS-1 --off
+xrandr --output LVDS-1 --preferred
+xrandr --output VGA-1 --preferred --right-of LVDS-1
+xrandr --output DP-1 --preferred
+xrandr --output HDMI-1 --preferred
 
 # Set keymap
 setxkbmap br
-# Config keys
-xset r rate 130 50
+# Config keys         130 50
+xset r rate 130 100   
 # Disable bell
 xset -b
 # Remap caps to escape
@@ -51,8 +45,16 @@ export _JAVA_AWT_WM_NONREPARENTING=1
 # Set wallpaper
 feh -no-fehbg --bg-fill ~/Pictures/Wallpapers/2.jpg
 
+# Set compton
+#compton -Cb &
+#picom &
+
 #pulseaudio --start
-cadence-session-start --system-start &
+#cadence-session-start --system-start &
+
+# Uniform adwaita Style
+QT_STYLE_OVERRIDE=adwaita
+export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 # Set statusbar
 while ~/.dwmstatus; do
@@ -60,5 +62,4 @@ while ~/.dwmstatus; do
 done &      
 
 exec dwm
-#exec sway
 

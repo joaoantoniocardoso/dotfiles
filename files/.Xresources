@@ -1,6 +1,14 @@
-#include "/home/joaoantoniocardoso/.colors/base16-xresources/xresources/base16-atelier-plateau.Xresources"
+! #include "/home/joaoantoniocardoso/.colors/base16-xresources/xresources/base16-atelier-plateau.Xresources"
+ 
+*XTerm*termname: xterm-256color
+!*XTerm*faceName: DejaVu Sans Mono for Powerline:size=9:antialias=false:autohint=true;
+*XTerm*font: -*-terminus-medium-r-normal-*-12-*-*-*-*-*-iso10646-1
+*visualBell: false
+*bellIsUrgent: false
+*XTerm*utf8: 1
+*XTerm*fullscreen: never
 
-xterm*visualBell: false
+
 
 !!!!!!!! ST !!!!!!!
 
@@ -14,8 +22,8 @@ st.termname:     st-256color
 st.shell:        /bin/zsh
 
 ! The following options options can be reloaded via USR1 signal.
-! st.font:         Liberation Mono:pixelsize=12:antialias=true:autohint=true;
-st.font:         DejaVu Sans Mono for Powerline:pixelsize=11:antialias=true:autohint=true;
+st.font:         Liberation Mono for Powerline:pixelsize=12:antialias=true:autohint=true;
+!st.font:         DejaVu Sans Mono for Powerline:pixelsize=11:antialias=true:autohint=true;
 st.borderpx:     0
 ! Available cursor values: 2 4 6 7 = █ _ | ☃ ( 1 3 5 are blinking versions)
 st.cursorshape:  2
